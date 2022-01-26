@@ -17,6 +17,7 @@
 use crowdloan_rewards_precompiles::CrowdloanRewardsWrapper;
 use fp_evm::Context;
 use moonbeam_relay_encoder::westend::WestendEncoder;
+use pallet_nop_precompiles::PalletNopPrecompile;
 use pallet_author_mapping_precompiles::AuthorMappingWrapper;
 use pallet_democracy_precompiles::DemocracyWrapper;
 use pallet_evm::{AddressMapping, Precompile, PrecompileResult, PrecompileSet};
@@ -100,6 +101,7 @@ where
 	RelayEncoderWrapper<R, WestendEncoder>: Precompile,
 	XcmTransactorWrapper<R>: Precompile,
 	AuthorMappingWrapper<R>: Precompile,
+	PalletNopPrecompile<R>: Precompile,
 	R: pallet_evm::Config,
 {
 	fn execute(
@@ -156,6 +158,9 @@ where
 				input, target_gas, context, is_static,
 			)),
 			a if a == hash(2055) => Some(AuthorMappingWrapper::<R>::execute(
+				input, target_gas, context, is_static,
+			)),
+			a if a == hash(2056) => Some(PalletNopPrecompile::<R>::execute(
 				input, target_gas, context, is_static,
 			)),
 			// If the address matches asset prefix, the we route through the asset precompile set

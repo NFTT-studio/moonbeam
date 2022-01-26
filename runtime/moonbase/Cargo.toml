@@ -33,6 +33,9 @@ pallet-proxy-genesis-companion = { path = "../../pallets/proxy-genesis-companion
 parachain-staking = { path = "../../pallets/parachain-staking", default-features = false }
 xcm-transactor = { path = "../../pallets/xcm-transactor", default-features = false }
 
+pallet-nop = { path = "../../pallets/nop", default-features = false }
+pallet-nop-precompiles = { default-features = false, path = "../../precompiles/pallet-nop" }
+
 # Moonbeam precompiles
 crowdloan-rewards-precompiles = { path = "../../precompiles/crowdloan-rewards", default-features = false }
 pallet-author-mapping-precompiles = { path = "../../precompiles/author-mapping", default-features = false }
@@ -126,6 +129,7 @@ frame-benchmarking = { git = "https://github.com/purestake/substrate", branch = 
 frame-system-benchmarking = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.13", optional = true, default-features = false }
 frame-try-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.13", optional = true, default-features = false }
 
+
 [dev-dependencies]
 hex = "0.4"
 rlp = "0.5"
@@ -167,6 +171,8 @@ std = [
 	"orml-xtokens/std",
 	"pallet-asset-manager/std",
 	"pallet-assets/std",
+	"pallet-nop/std",
+	"pallet-nop-precompiles/std",
 	"pallet-author-inherent/std",
 	"pallet-author-mapping-precompiles/std",
 	"pallet-author-mapping/std",

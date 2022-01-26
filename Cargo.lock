@@ -1418,7 +1418,7 @@ dependencies = [
  "pallet-scheduler",
  "pallet-timestamp",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "rustc-hex",
  "scale-info",
  "serde",
@@ -5163,6 +5163,8 @@ dependencies = [
  "pallet-identity",
  "pallet-maintenance-mode",
  "pallet-migrations",
+ "pallet-nop",
+ "pallet-nop-precompiles",
  "pallet-proxy",
  "pallet-proxy-genesis-companion",
  "pallet-randomness-collective-flip",
@@ -5182,7 +5184,7 @@ dependencies = [
  "polkadot-core-primitives",
  "polkadot-parachain",
  "polkadot-runtime-parachains",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "relay-encoder-precompiles",
  "rlp",
  "runtime-common",
@@ -5576,7 +5578,7 @@ dependencies = [
  "parachain-staking",
  "parachain-staking-precompiles",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "rlp",
  "runtime-common",
  "scale-info",
@@ -5793,7 +5795,7 @@ dependencies = [
  "polkadot-core-primitives",
  "polkadot-parachain",
  "polkadot-runtime-parachains",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "relay-encoder-precompiles",
  "rlp",
  "runtime-common",
@@ -6470,7 +6472,7 @@ dependencies = [
  "pallet-scheduler",
  "pallet-timestamp",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "scale-info",
  "serde",
  "sp-core",
@@ -6790,7 +6792,7 @@ dependencies = [
  "pallet-scheduler",
  "pallet-timestamp",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "scale-info",
  "serde",
  "sp-core",
@@ -6920,7 +6922,7 @@ dependencies = [
  "pallet-evm",
  "pallet-timestamp",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "scale-info",
  "serde",
  "sha3 0.8.2",
@@ -6945,7 +6947,7 @@ dependencies = [
  "pallet-evm",
  "pallet-timestamp",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "scale-info",
  "serde",
  "sha3 0.8.2",
@@ -7235,6 +7237,46 @@ dependencies = [
  "frame-system",
  "parity-scale-codec",
  "scale-info",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-nop"
+version = "4.0.0-dev"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "log",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+]
+
+[[package]]
+name = "pallet-nop-precompiles"
+version = "4.0.0-dev"
+dependencies = [
+ "derive_more",
+ "fp-evm",
+ "frame-support",
+ "frame-system",
+ "hex-literal",
+ "log",
+ "num_enum",
+ "pallet-balances",
+ "pallet-evm",
+ "pallet-nop",
+ "parity-scale-codec",
+ "precompile-utils 0.1.0 (git+https://github.com/nftt-studio/moonbeam.git?branch=master)",
+ "scale-info",
+ "serde",
+ "sp-core",
  "sp-io",
  "sp-runtime",
  "sp-std",
@@ -7614,7 +7656,7 @@ dependencies = [
  "pallet-timestamp",
  "parachain-staking",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "rustc-hex",
  "scale-info",
  "serde",
@@ -9163,7 +9205,27 @@ dependencies = [
  "num_enum",
  "pallet-evm",
  "parity-scale-codec",
- "precompile-utils-macro",
+ "precompile-utils-macro 0.1.0",
+ "sha3 0.9.1",
+ "sp-core",
+ "sp-io",
+ "sp-std",
+ "xcm",
+]
+
+[[package]]
+name = "precompile-utils"
+version = "0.1.0"
+source = "git+https://github.com/nftt-studio/moonbeam.git?branch=master#b1c58b6bb8d1ba82e0a41c8ade9b6181cfd6447e"
+dependencies = [
+ "fp-evm",
+ "frame-support",
+ "frame-system",
+ "log",
+ "num_enum",
+ "pallet-evm",
+ "parity-scale-codec",
+ "precompile-utils-macro 0.1.0 (git+https://github.com/nftt-studio/moonbeam.git?branch=master)",
  "sha3 0.9.1",
  "sp-core",
  "sp-io",
@@ -9174,6 +9236,18 @@ dependencies = [
 [[package]]
 name = "precompile-utils-macro"
 version = "0.1.0"
+dependencies = [
+ "num_enum",
+ "proc-macro2",
+ "quote",
+ "sha3 0.8.2",
+ "syn",
+]
+
+[[package]]
+name = "precompile-utils-macro"
+version = "0.1.0"
+source = "git+https://github.com/nftt-studio/moonbeam.git?branch=master#b1c58b6bb8d1ba82e0a41c8ade9b6181cfd6447e"
 dependencies = [
  "num_enum",
  "proc-macro2",
@@ -9817,7 +9891,7 @@ dependencies = [
  "pallet-staking",
  "pallet-timestamp",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "rustc-hex",
  "scale-info",
  "serde",
@@ -13958,7 +14032,7 @@ dependencies = [
  "pallet-timestamp",
  "pallet-xcm",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "rustc-hex",
  "scale-info",
  "serde",
@@ -13991,7 +14065,7 @@ dependencies = [
  "pallet-timestamp",
  "pallet-xcm",
  "parity-scale-codec",
- "precompile-utils",
+ "precompile-utils 0.1.0",
  "rustc-hex",
  "scale-info",
  "serde",
