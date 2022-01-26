@@ -12,6 +12,7 @@ members = [
 	"pallets/proxy-genesis-companion",
 	"precompiles/utils/macro",
 	"precompiles/pallet-nop",
+	"precompiles/frame-system",
 	"runtime/moonbase",
 	"runtime/moonbeam",
 	"runtime/moonriver",
