@@ -35,14 +35,15 @@ where
 		let mut gasometer = Gasometer::new(target_gas);
 		let gasometer = &mut gasometer;
 
-		let (input, selector) = match EvmDataReader::new_with_selector(gasometer, input) {
+		let (mut input, selector) = match EvmDataReader::new_with_selector(gasometer, input) {
 			Ok((input, selector)) => (input, selector),
 			Err(e) => return Err(e),
 		};
+		let input = &mut input;
 
 		match selector {
 			// Check for accessor methods first. These return results immediately
-			Action::RemarkWithEvent => Self::remark_with_event(input, target_gas, context),
+			Action::RemarkWithEvent => Self::remark_with_event(input, gasometer, context),
 		}
 	}
 }
@@ -55,19 +56,16 @@ where
 	T::Call: From<frame_system::Call<T>>,
 {
 	fn remark_with_event(
-		mut input: EvmDataReader,
-		target_gas: Option<u64>,
+		input: &mut EvmDataReader,
+		gasometer: &mut Gasometer,
 		context: &Context,
 	) -> EvmResult<PrecompileOutput> {
-		// This gasometer is a handy utility that will help us account for gas as we go.
-		let mut gasometer = Gasometer::new(target_gas);
-
 		// Bound check. We expect a single argument passed in.
-		input.expect_arguments(&mut gasometer, 1)?;
+		input.expect_arguments(gasometer, 1)?;
 
 		// Use pallet-evm's account mapping to determine what AccountId to dispatch from.
 		let origin = T::AddressMapping::into_account_id(context.caller);
-		let remark: Vec<u8> = input.read::<Bytes>(&mut gasometer)?.into();
+		let remark: Vec<u8> = input.read::<Bytes>(gasometer)?.into();
 		let call = frame_system::Call::<T>::remark_with_event { remark: remark.clone() };
 
 		if_std! {
@@ -78,7 +76,7 @@ where
 				println!("The call is: {:#?}", call);
 		}
 
-		RuntimeHelper::<T>::try_dispatch(Some(origin).into(), call, &mut gasometer)?;
+		RuntimeHelper::<T>::try_dispatch(Some(origin).into(), call, gasometer)?;
 
 		let used_gas = gasometer.used_gas();
 		// Record the gas used in the gasometer
